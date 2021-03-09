@@ -21,7 +21,7 @@ module.exports = function makeValidateMobile({ Validator, isEmpty }) {
 				getstock: () => stock,
 				getimage: () => image,
 				getdescription: () => description,
-				getDate: () => date
+				getdate: () => date
 			})
 		};
 	};
