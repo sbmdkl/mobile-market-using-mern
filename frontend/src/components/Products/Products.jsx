@@ -8,7 +8,7 @@ export default function Products() {
 		return products.map((product, i) => {
 			return (
 				<div key={i} className='col-md-4'>
-					<Product name={product.name} price={product.price} stock={product.stock} image={product.image} />
+					<Product product={product} />
 				</div>
 			);
 		});
