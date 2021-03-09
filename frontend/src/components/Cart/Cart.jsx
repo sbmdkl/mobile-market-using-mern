@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
+import { removeProductFromCart } from '../../redux/actions';
 import styles from './Cart.module.css';
 
 function Cart(props) {
@@ -21,17 +22,19 @@ function Cart(props) {
 		}
 	};
 	const renderCarts = () => {
-		return props.carts.map((cart) => {
+		return props.carts.map((product, i) => {
 			return (
-				<div className={`${styles['cartItem']}`}>
+				<div key={i} className={`${styles['cartItem']}`}>
 					<div className={`${styles['cartItemName']}`}>
-						<p>Iphone</p>
-						<button className='btn btn-sm btn-danger'>X</button>
+						<p>{product.name}</p>
+						<button onClick={() => props.removeProductFromCart(product.id)} className='btn btn-sm btn-danger'>
+							X
+						</button>
 					</div>
 					<div>
-						<p>Quantity 1</p>
-						<p>price Rs.100</p>
-						<p>total Rs.100</p>
+						<p>Quantity {product.quantity}</p>
+						<p>price Rs.{product.price}</p>
+						<p>total Rs.{product.quantity * product.price}</p>
 					</div>
 					<hr />
 				</div>
@@ -47,7 +50,19 @@ function Cart(props) {
 				</div>
 				{showCart && (
 					<div ref={dropDownRef} className={`${styles['cartDropdown']}`}>
-						{!!props.carts && renderCarts()}
+						{!!props.carts.length ? (
+							<React.Fragment>
+								{renderCarts()}
+								<p>
+									Total:{' '}
+									{props.carts
+										.reduce((acc, product) => parseFloat(acc) + parseFloat(product.quantity * product.price), [ 0 ])
+										.toString()}
+								</p>
+							</React.Fragment>
+						) : (
+							<p className='text-center'>Cart is Empty</p>
+						)}
 					</div>
 				)}
 			</div>
@@ -59,6 +74,8 @@ const mapStateToProps = (state) => ({
 	carts: state.carts
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+	removeProductFromCart
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
