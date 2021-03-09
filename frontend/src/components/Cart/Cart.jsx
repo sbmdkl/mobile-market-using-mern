@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
-import { removeProductFromCart } from '../../redux/actions';
+import { removeProductFromCart, increaseProductQuantity } from '../../redux/actions';
 import styles from './Cart.module.css';
 
 function Cart(props) {
@@ -27,7 +27,13 @@ function Cart(props) {
 				<div key={i} className={`${styles['cartItem']}`}>
 					<div className={`${styles['cartItemName']}`}>
 						<p>{product.name}</p>
-						<button onClick={() => props.removeProductFromCart(product.id)} className='btn btn-sm btn-danger'>
+						<button
+							onClick={() => {
+								props.removeProductFromCart(product.id);
+								props.increaseProductQuantity(product.id, product.quantity);
+							}}
+							className='btn btn-sm btn-danger'
+						>
 							X
 						</button>
 					</div>
@@ -75,7 +81,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-	removeProductFromCart
+	removeProductFromCart,
+	increaseProductQuantity
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

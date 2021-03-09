@@ -6,7 +6,9 @@ import {
 	CART_REMOVE_PRODUCT,
 	CART_REMOVE_ALL,
 	HOME_SEARCH_PRODUCT,
-	HOME_SORT_PRICE
+	HOME_SORT_PRICE,
+	PRODUCT_DECREMENT_ON_ADD_TO_CART,
+	PRODUCT_INCREMENT_ON_REMOVE_FROM_CART
 } from './actionTypes';
 
 // export const fetchProducts = () => {
@@ -30,9 +32,26 @@ import {
 // 	};
 // };
 
+export const fetchProducts = (products) => ({
+	type: PRODUCT_FETCH_SUCCESS,
+	payload: products
+});
+
 export const addProductToCart = (product) => ({
 	type: CART_ADD_PRODUCT,
 	payload: product
+});
+
+export const decreaseProductQuantity = (id) => {
+	console.log('daf');
+	return {
+		type: PRODUCT_DECREMENT_ON_ADD_TO_CART,
+		payload: id
+	};
+};
+export const increaseProductQuantity = (id, quantity) => ({
+	type: PRODUCT_INCREMENT_ON_REMOVE_FROM_CART,
+	payload: { id, quantity }
 });
 
 export const removeProductFromCart = (id) => ({
