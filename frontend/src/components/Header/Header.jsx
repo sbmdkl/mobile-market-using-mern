@@ -1,15 +1,23 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { updateSearchText } from '../../redux/actions';
 import Cart from '../Cart/Cart';
 import styles from './Header.module.css';
-export default function Header() {
+function Header(props) {
 	return (
 		<div>
 			<div>
 				<nav className='container mt-2'>
 					<div className={styles['navbarContainer']}>
 						<div className={styles['navbarBrand']}>
-							<a href='#'>Store</a>
-							<input type='text' className={styles['searchBar']} placeholder='Search Mobiles' />
+							<a href='/'>Store</a>
+							<input
+								onChange={(e) => props.updateSearchText(e.target.value)}
+								type='text'
+								className={styles['searchBar']}
+								placeholder='Search Mobiles'
+								defaultValue={props.searchText}
+							/>
 						</div>
 						<Cart />
 					</div>
@@ -18,3 +26,12 @@ export default function Header() {
 		</div>
 	);
 }
+const mapStateToProps = (state) => ({
+	searchText: state.home.searchText
+});
+
+const mapDispatchToProps = {
+	updateSearchText
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
