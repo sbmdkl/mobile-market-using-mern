@@ -2,16 +2,32 @@ import { CART_ADD_PRODUCT, CART_REMOVE_ALL, CART_REMOVE_PRODUCT } from '../actio
 
 const initialState = [];
 
-export default (state = initialState, action) => {
-	console.log(action);
+const CartsReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case CART_ADD_PRODUCT:
-			return [ ...state, action.payload ];
+			let product = Object.assign({}, action.payload);
+			let newState = [];
+			let existedProduct = state.filter((product) => product.id === action.payload.id);
+			if (existedProduct.length) {
+				product.quantity = existedProduct[0].quantity + 1;
+				newState = state.map((p) => {
+					if (p.id === existedProduct[0].id) {
+						p = product;
+					}
+					return p;
+				}, product);
+			} else {
+				product.quantity = 1;
+				newState = [ ...state, product ];
+			}
+			return newState;
 		case CART_REMOVE_PRODUCT:
-			return state.filter((id) => id != action.payload.id);
+			return state.filter((product) => product.id !== action.payload);
 		case CART_REMOVE_ALL:
 			return initialState;
 		default:
 			return state;
 	}
 };
+
+export default CartsReducer;
