@@ -4,7 +4,9 @@ import {
 	PRODUCT_FETCH_SUCCESS,
 	CART_ADD_PRODUCT,
 	CART_REMOVE_PRODUCT,
-	CART_REMOVE_ALL
+	CART_REMOVE_ALL,
+	HOME_SEARCH_PRODUCT,
+	HOME_SORT_PRICE
 } from './actionTypes';
 
 // export const fetchProducts = () => {
@@ -42,3 +44,17 @@ export const removeAllProductFromCart = (product) => ({
 	type: CART_REMOVE_ALL,
 	payload: ''
 });
+
+export const updateSearchText = (searchText) => {
+	return {
+		type: HOME_SEARCH_PRODUCT,
+		payload: searchText
+	};
+};
+
+export const sortByPrice = (data) => {
+	return {
+		type: HOME_SORT_PRICE,
+		payload: data
+	};
+};
