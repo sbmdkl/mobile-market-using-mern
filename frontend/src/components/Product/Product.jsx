@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addProductToCart } from '../../redux/actions';
+import { addProductToCart, decreaseProductQuantity } from '../../redux/actions';
 import styles from './Product.module.css';
 function Product(props) {
 	return (
@@ -11,19 +11,32 @@ function Product(props) {
 				<p className={styles['price']}>
 					<strong>Rs. {props.product.price}</strong>
 				</p>
-				<p className={styles['price']}>Available Stock: {props.product.stock}</p>
+				<p className={styles['price']}>
+					{props.product.stock > 0 ? `Available Stock: ${props.product.stock}` : 'Currently out of stock'}
+				</p>
 			</div>
 			<div className={styles['addCart']}>
-				<button onClick={() => props.addProductToCart(props.product)} className='btn btn-outline-secondary'>
+				<button
+					onClick={() => {
+						props.addProductToCart(props.product);
+						props.decreaseProductQuantity(props.product.id);
+					}}
+					className='btn btn-outline-secondary'
+					disabled={props.product.stock > 0 ? false : true}
+				>
 					ADD TO CART
 				</button>
 			</div>
 		</div>
 	);
 }
+const mapStateToProps = (state) => ({
+	products: state.products
+});
 
 const mapDispatchToProps = {
-	addProductToCart
+	addProductToCart,
+	decreaseProductQuantity
 };
 
-export default connect(null, mapDispatchToProps)(Product);
+export default connect(mapStateToProps, mapDispatchToProps)(Product);
