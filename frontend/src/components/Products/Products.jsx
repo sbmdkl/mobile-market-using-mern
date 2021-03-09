@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import { fetchProducts } from '../../redux/actions';
 import Product from '../Product/Product';
 import styles from './Products.module.css';
 const data = require('../../utils/MockAPI.json');
 function Products(props) {
 	useEffect(() => {
-		props.fetchProducts(data);
+		axios.get('/api/mobiles').then((res) => {
+			props.fetchProducts(res.data);
+		});
 	}, []);
 	const renderProducts = () => {
 		let ps = [ ...props.products ];
