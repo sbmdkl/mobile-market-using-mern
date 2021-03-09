@@ -2,35 +2,35 @@
   {
     "id":1,
     "name": "Iphone 1",
-    "price": 10000,
+    "price": 5000,
     "stock": 20,
     "image": "https://drop.ndtv.com/TECH/product_database/images/913201720152AM_635_iphone_x.jpeg?downsize=*:420&output-quality=80"
   },
   {
     "id":2,
-    "name": "Iphone 2",
-    "price": 10000,
+    "name": "Samsung 2",
+    "price": 4000,
     "stock": 20,
     "image": "https://drop.ndtv.com/TECH/product_database/images/913201720152AM_635_iphone_x.jpeg?downsize=*:420&output-quality=80"
   },
   {
     "id":3,
-    "name": "Iphone 3",
+    "name": "Motorola 3",
     "price": 10000,
     "stock": 20,
     "image": "https://drop.ndtv.com/TECH/product_database/images/913201720152AM_635_iphone_x.jpeg?downsize=*:420&output-quality=80"
   },
   {
     "id":4,
-    "name": "Iphone 4",
-    "price": 10000,
+    "name": "Oppo 4",
+    "price": 8000,
     "stock": 20,
     "image": "https://drop.ndtv.com/TECH/product_database/images/913201720152AM_635_iphone_x.jpeg?downsize=*:420&output-quality=80"
   },
   {
     "id":5,
-    "name": "Iphone 5",
-    "price": 10000,
+    "name": "Realme 5",
+    "price": 16000,
     "stock": 20,
     "image": "https://drop.ndtv.com/TECH/product_database/images/913201720152AM_635_iphone_x.jpeg?downsize=*:420&output-quality=80"
   }
