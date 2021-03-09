@@ -1,3 +1,28 @@
 .cart {
   cursor: pointer;
+  position: relative;
+}
+
+.cartDropdown {
+  margin-top: 20px;
+  width: 300px;
+  position: absolute;
+  right: 0;
+  z-index: 1000;
+  background-color: white;
+}
+
+.cartItemName {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.cartItem div{
+  display: flex;
+}
+.cartItem p{
+  margin-right: 5px;
+  margin-bottom: 5px;
+
 }
