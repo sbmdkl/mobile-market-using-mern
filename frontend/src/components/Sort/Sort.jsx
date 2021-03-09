@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { sortByPrice } from '../../redux/actions';
-import './Sort.css';
+import styles from './Sort.module.css';
 function Sort(props) {
 	return (
-		<div className='sort'>
+		<div className={styles['sort']}>
 			<p>Sort By:</p>
 			<select onChange={(e) => props.sortByPrice(e.target.value)} name='' id=''>
 				<option value='priceBestMatch'>Best Match</option>
