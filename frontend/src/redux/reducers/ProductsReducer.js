@@ -1,11 +1,29 @@
-import { PRODUCT_FETCH_SUCCESS } from '../actionTypes';
+import {
+	PRODUCT_FETCH_SUCCESS,
+	PRODUCT_DECREMENT_ON_ADD_TO_CART,
+	PRODUCT_INCREMENT_ON_REMOVE_FROM_CART
+} from '../actionTypes';
 
 const initialState = [];
 
 const ProductsReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case PRODUCT_FETCH_SUCCESS:
-			return [ ...state, action.payload ];
+			return action.payload;
+		case PRODUCT_DECREMENT_ON_ADD_TO_CART:
+			return state.map((product) => {
+				if (product.id === action.payload) {
+					product.stock -= 1;
+				}
+				return product;
+			});
+		case PRODUCT_INCREMENT_ON_REMOVE_FROM_CART:
+			return state.map((product) => {
+				if (product.id === action.payload.id) {
+					product.stock += action.payload.quantity;
+				}
+				return product;
+			});
 		default:
 			return state;
 	}
