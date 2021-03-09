@@ -1,0 +1,9 @@
+.sort {
+  margin-top: 20px;
+  margin-left: 20px;
+  display: flex;
+}
+
+.sort p {
+  margin-right: 15px;
+}
