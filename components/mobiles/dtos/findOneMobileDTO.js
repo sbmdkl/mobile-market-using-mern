@@ -1,3 +1,4 @@
+const { formatDate } = require('../../../utils/helpers');
 module.exports = ({ mobile: { _id, name, price, stock, image, description, date } }) => ({
 	id: _id,
 	name,
@@ -5,5 +6,5 @@ module.exports = ({ mobile: { _id, name, price, stock, image, description, date 
 	stock,
 	image,
 	description,
-	date
+	date: formatDate(date)
 });

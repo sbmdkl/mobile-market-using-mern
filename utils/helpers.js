@@ -8,4 +8,11 @@ const generatePrefix = () => {
 	return prefix;
 };
 
-module.exports = { generatePrefix };
+function formatDate(date) {
+	var result = new Date(date);
+	const year = result.getFullYear();
+	const month = result.getMonth() + 1;
+	const day = result.getDate();
+	return `${day > 9 ? day : '0' + day}-${month > 9 ? month : '0' + month}-${year}`;
+}
+module.exports = { generatePrefix, formatDate };
