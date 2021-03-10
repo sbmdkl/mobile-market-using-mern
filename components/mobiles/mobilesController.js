@@ -11,9 +11,9 @@ const findAll = async (req, res) => {
 };
 
 const create = async (req, res) => {
-	const { body } = req;
+	const { body, files } = req;
 	try {
-		const response = await mobilesService.create({ httpRequest: { body } });
+		const response = await mobilesService.create({ httpRequest: { body, files } });
 		res.status(200).send(response);
 	} catch (e) {
 		res.status(400).send(e);

@@ -8,9 +8,6 @@ module.exports = function makeValidateMobile({ Validator, isEmpty }) {
 		if (Validator.isEmpty(price + '')) {
 			errors.name = 'Price field is required';
 		}
-		if (Validator.isEmpty(image + '')) {
-			errors.name = 'Image field is required';
-		}
 
 		return {
 			errors,
