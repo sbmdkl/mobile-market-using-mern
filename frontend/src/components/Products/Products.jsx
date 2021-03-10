@@ -10,8 +10,10 @@ function Products(props) {
 			props.fetchProducts(res.data);
 			// load from localstorage
 			const carts = JSON.parse(localStorage.getItem('carts'));
-			props.restoreCartProducts(carts);
-			props.decreaseProductQuantityOnCartRestore(carts);
+			if (carts) {
+				props.restoreCartProducts(carts);
+				props.decreaseProductQuantityOnCartRestore(carts);
+			}
 		});
 	}, []);
 	const renderProducts = () => {
