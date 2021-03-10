@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { updateSearchText } from '../../redux/actions';
 import Cart from '../Cart/Cart';
 import styles from './Header.module.css';
@@ -10,7 +11,7 @@ function Header(props) {
 				<nav className='container mt-2'>
 					<div className={styles['navbarContainer']}>
 						<div className={styles['navbarBrand']}>
-							<a href='/'>Store</a>
+							<Link to='/'>Mobile Store</Link>
 							<input
 								onChange={(e) => props.updateSearchText(e.target.value)}
 								type='text'

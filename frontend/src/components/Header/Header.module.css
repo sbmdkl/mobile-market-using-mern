@@ -6,7 +6,7 @@
 .navbarBrand a{
   color: #000;
   font-weight: 600;
-  font-size: 25px;
+  font-size: 20px;
   margin-right: 50px;
 }
 
@@ -15,10 +15,10 @@
 }
 
 .searchBar {
-  width: 100%;
+  width: 70%;
   background-color: #F8F8F7;
   border: none;
-  padding-left: 10px;
+  padding: 10px;
 }
 
 

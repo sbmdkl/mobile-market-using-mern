@@ -14,6 +14,7 @@ function Product(props) {
 				<p className={styles['price']}>
 					{props.product.stock > 0 ? `Available Stock: ${props.product.stock}` : 'Currently out of stock'}
 				</p>
+				<p>Created On: {props.product.date}</p>
 			</div>
 			<div className={styles['addCart']}>
 				<button
