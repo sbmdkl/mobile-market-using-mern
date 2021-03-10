@@ -15,7 +15,7 @@ function Cart(props) {
 	const dropDownRef = useRef();
 	const handleClickOutside = (event) => {
 		if (dropDownRef.current) {
-			if (!dropDownRef.current.contains(event.target)) {
+			if (!dropDownRef.current.contains(event.target) && !cartRef.current.contains(event.target)) {
 				setShowCart(false);
 			} else {
 			}
