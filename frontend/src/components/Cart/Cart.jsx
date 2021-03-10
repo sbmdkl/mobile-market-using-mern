@@ -21,6 +21,10 @@ function Cart(props) {
 			}
 		}
 	};
+	const handleRemoveProduct = (product) => {
+		props.removeProductFromCart(product.id);
+		props.increaseProductQuantity(product.id, product.quantity);
+	};
 	const renderCarts = () => {
 		return props.carts.map((product, i) => {
 			return (
@@ -29,8 +33,7 @@ function Cart(props) {
 						<p>{product.name}</p>
 						<button
 							onClick={() => {
-								props.removeProductFromCart(product.id);
-								props.increaseProductQuantity(product.id, product.quantity);
+								handleRemoveProduct(product);
 							}}
 							className='btn btn-sm btn-danger'
 						>

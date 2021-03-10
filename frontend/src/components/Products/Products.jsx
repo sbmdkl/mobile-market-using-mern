@@ -1,13 +1,17 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { fetchProducts } from '../../redux/actions';
+import { fetchProducts, restoreCartProducts, decreaseProductQuantityOnCartRestore } from '../../redux/actions';
 import Product from '../Product/Product';
 import styles from './Products.module.css';
 function Products(props) {
 	useEffect(() => {
 		axios.get('/api/mobiles').then((res) => {
 			props.fetchProducts(res.data);
+			// load from localstorage
+			const carts = JSON.parse(localStorage.getItem('carts'));
+			props.restoreCartProducts(carts);
+			props.decreaseProductQuantityOnCartRestore(carts);
 		});
 	}, []);
 	const renderProducts = () => {
@@ -44,7 +48,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-	fetchProducts
+	fetchProducts,
+	restoreCartProducts,
+	decreaseProductQuantityOnCartRestore
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);

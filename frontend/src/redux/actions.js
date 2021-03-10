@@ -1,36 +1,15 @@
 import {
-	PRODUCT_FETCH_START,
-	PRODUCT_FETCH_FAIL,
 	PRODUCT_FETCH_SUCCESS,
 	CART_ADD_PRODUCT,
+	CART_RESTORE_PRODUCT,
 	CART_REMOVE_PRODUCT,
 	CART_REMOVE_ALL,
 	HOME_SEARCH_PRODUCT,
 	HOME_SORT_PRICE,
 	PRODUCT_DECREMENT_ON_ADD_TO_CART,
-	PRODUCT_INCREMENT_ON_REMOVE_FROM_CART
+	PRODUCT_INCREMENT_ON_REMOVE_FROM_CART,
+	PRODUCT_DECREMENT_ON_RESTORE_CART
 } from './actionTypes';
-
-// export const fetchProducts = () => {
-// 	return async (dispatch) => {
-// 		try {
-// 			dispatch({
-// 				type: PRODUCT_FETCH_START
-// 			});
-// 			const products = await fetchItemsApi();
-// 			dispatch({
-// 				type: PRODUCT_FETCH_SUCCESS,
-// 				payload: items
-// 			});
-// 		} catch (err) {
-// 			dispatch({
-// 				type: PRODUCT_FETCH_FAIL,
-// 				payload: err,
-// 				error: true
-// 			});
-// 		}
-// 	};
-// };
 
 export const fetchProducts = (products) => ({
 	type: PRODUCT_FETCH_SUCCESS,
@@ -42,13 +21,19 @@ export const addProductToCart = (product) => ({
 	payload: product
 });
 
-export const decreaseProductQuantity = (id) => {
-	console.log('daf');
-	return {
-		type: PRODUCT_DECREMENT_ON_ADD_TO_CART,
-		payload: id
-	};
-};
+export const restoreCartProducts = (products) => ({
+	type: CART_RESTORE_PRODUCT,
+	payload: products
+});
+
+export const decreaseProductQuantity = (id) => ({
+	type: PRODUCT_DECREMENT_ON_ADD_TO_CART,
+	payload: id
+});
+export const decreaseProductQuantityOnCartRestore = (products) => ({
+	type: PRODUCT_DECREMENT_ON_RESTORE_CART,
+	payload: products
+});
 export const increaseProductQuantity = (id, quantity) => ({
 	type: PRODUCT_INCREMENT_ON_REMOVE_FROM_CART,
 	payload: { id, quantity }

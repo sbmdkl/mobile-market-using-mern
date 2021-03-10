@@ -1,4 +1,4 @@
-import { CART_ADD_PRODUCT, CART_REMOVE_ALL, CART_REMOVE_PRODUCT } from '../actionTypes';
+import { CART_ADD_PRODUCT, CART_RESTORE_PRODUCT, CART_REMOVE_ALL, CART_REMOVE_PRODUCT } from '../actionTypes';
 
 const initialState = [];
 
@@ -20,11 +20,16 @@ const CartsReducer = (state = initialState, action) => {
 				product.quantity = 1;
 				newState = [ ...state, product ];
 			}
+			localStorage.setItem('carts', JSON.stringify(newState));
 			return newState;
 		case CART_REMOVE_PRODUCT:
-			return state.filter((product) => product.id !== action.payload);
+			const newStateAfterRemove = state.filter((product) => product.id !== action.payload);
+			localStorage.setItem('carts', JSON.stringify(newStateAfterRemove));
+			return newStateAfterRemove;
+		case CART_RESTORE_PRODUCT:
+			return action.payload;
 		case CART_REMOVE_ALL:
-			return initialState;
+			return [];
 		default:
 			return state;
 	}
