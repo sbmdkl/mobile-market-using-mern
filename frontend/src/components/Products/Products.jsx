@@ -4,7 +4,6 @@ import axios from 'axios';
 import { fetchProducts } from '../../redux/actions';
 import Product from '../Product/Product';
 import styles from './Products.module.css';
-const data = require('../../utils/MockAPI.json');
 function Products(props) {
 	useEffect(() => {
 		axios.get('/api/mobiles').then((res) => {
