@@ -31,11 +31,12 @@ const findOne = async (req, res) => {
 };
 
 const update = async (req, res) => {
-	const { params, body } = req;
+	const { params, body, files } = req;
 	try {
-		const response = await mobilesService.update({ httpRequest: { params, body } });
+		const response = await mobilesService.update({ httpRequest: { params, body, files } });
 		res.status(200).send(response);
 	} catch (e) {
+		console.log(e);
 		res.status(400).send(e);
 	}
 };

@@ -1,7 +1,7 @@
 const { validateMobile } = require('../validators');
 const { createMobileDTO } = require('../dtos');
 
-module.exports = function makeCreateMobile({ Mobile, path, generatePrefix }) {
+module.exports = function makeCreateMobile({ Mobile, generatePrefix }) {
 	return async function createMobile({ httpRequest: { body, files } }) {
 		const { errors, isValid, data } = validateMobile(body);
 		if (!isValid) {
